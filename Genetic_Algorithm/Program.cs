@@ -8,7 +8,7 @@ namespace Genetic_Algorithm
 {
     class Program
     {
-        static public Random Rand { get; set; } = new Random();
+
         static void Main(string[] args)
         {
 
@@ -17,12 +17,22 @@ namespace Genetic_Algorithm
             // Init population
             demo.population.InitializePopulation(100);
 
-            //for(int i = 0; i < demo.population.individuals.Count(); i++)
+            //for (int i = 0; i < demo.population.individuals.Count(); i++)
             //{
 
-            //    Console.WriteLine(string.Join(",",demo.population.individuals[i].genes));
+            //    Console.WriteLine(string.Join(",", demo.population.individuals[i].genes));
             //}
-            //Console.WriteLine(demo);
+
+            demo.population.CalculateFitness();
+
+            for (int i = 0; i < demo.population.individuals.Count(); i++)
+            {
+
+                Console.WriteLine($"{string.Join(",", demo.population.individuals[i].genes)} , {demo.population.individuals[i].fitness}");
+            }
+
+            Console.WriteLine($"Generation {demo.generationCount} Fittest: {demo.population.fittest}");
+
 
             Console.ReadLine();
         }

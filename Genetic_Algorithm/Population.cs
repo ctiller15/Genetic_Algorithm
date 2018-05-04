@@ -20,7 +20,7 @@ namespace Genetic_Algorithm
             for (int i = 0; i < individuals.Count(); i++)
             {
                 individuals[i] = new Individual();
-                Console.WriteLine(string.Join(",", individuals[i].genes));
+                //Console.WriteLine(string.Join(",", individuals[i].genes));
             }
         }
 

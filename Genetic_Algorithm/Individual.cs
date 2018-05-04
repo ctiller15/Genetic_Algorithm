@@ -9,14 +9,14 @@ namespace Genetic_Algorithm
     class Individual
     {
         public int fitness = 0;
-        static public int geneLength = 5;
+        static public int geneLength = 20;
         public int[] genes = new int[geneLength];
 
         // Calculates the fitness for this individual.
         // If the gene value matches our desired binary, then the fitness increases.
         public void FitnessCalc()
         {
-            for(int i = 0; i < 5; i++)
+            for(int i = 0; i < geneLength; i++)
             {
                 if(genes[i] == 1)
                 {
@@ -32,7 +32,7 @@ namespace Genetic_Algorithm
             for(int i = 0; i < genes.Length; i++)
             {
                 // Generates a bit that is either 1 or 0.
-                genes[i] = Program.Rand.Next() % 2;
+                genes[i] = Services.Rand.Next() % 2;
             }
         }
     }
