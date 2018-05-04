@@ -64,6 +64,7 @@ namespace Genetic_Algorithm
 
             // Select a random crossover point
             int crossOverPoint = Services.Rand.Next(Individual.geneLength);
+            Console.WriteLine(crossOverPoint);
 
             // Do the crossover.
             for(int i = 0; i < Individual.geneLength; i++)
@@ -140,8 +141,10 @@ namespace Genetic_Algorithm
             for(int i = 0; i < Population.PopSize; i++)
             {
                 Crossover();
-                Console.WriteLine(childGene);
-                newPop.individuals[i] = new Individual(childGene);
+                Console.WriteLine("Child:");
+                Console.WriteLine(string.Join(",",childGene));
+                var newIndividual = new Individual(childGene);
+                newPop.individuals[i] = newIndividual;
             }
 
             // Replace the old population with a new population.

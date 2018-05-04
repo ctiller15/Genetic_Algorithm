@@ -39,7 +39,15 @@ namespace Genetic_Algorithm
         //individual overload, takes an array.
         public Individual(int[] genecombination)
         {
-            genes = genecombination;
+            for(int i = 0; i < geneLength; i++)
+            {
+                //genes = genecombination
+                //genes[i] = genecombination[i];
+                // Clone to avoid reference issues.
+                genes = (int[])genecombination.Clone();
+            
+            }
+
         }
     }
 }
