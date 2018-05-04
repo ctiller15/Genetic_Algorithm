@@ -49,10 +49,23 @@ namespace Genetic_Algorithm
                 //demo.Crossover();
 
                 demo.CreateNewPopulation();
-
-                for (int i = 0; i < demo.population.individuals.Count(); i++)
+                for(int i = 0; i < 10; i++)
                 {
+                    Console.WriteLine(string.Join(",", demo.population.individuals[i].genes));
+                }
 
+
+                //for (int i = 0; i < demo.population.individuals.Count(); i++)
+                //{
+
+                //    Console.WriteLine(string.Join(",", demo.population.individuals[i].genes));
+                //}
+
+                //Console.ReadLine();
+
+                demo.Mutation();
+                for (int i = 0; i < 10; i++)
+                {
                     Console.WriteLine(string.Join(",", demo.population.individuals[i].genes));
                 }
 

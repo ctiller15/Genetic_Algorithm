@@ -89,7 +89,6 @@ namespace Genetic_Algorithm
 
             // Swap values
             
- 
 
             //for(int i = 0; i < crossOverPoint; i ++)
             //{
@@ -103,24 +102,48 @@ namespace Genetic_Algorithm
         // Mutation
         public void Mutation()
         {
-            Random rand = new Random();
+            //Random rand = new Random();
 
             // Select a random mutation point
-            int mutationPoint = rand.Next(Individual.geneLength);
+            //int mutationPoint = Services.Rand.Next(Individual.geneLength);
 
             int count = fittest.Count();
 
-            for (int i = 0; i < count; i++)
+            //for (int i = 0; i < count; i++)
+            //{
+            //    if(fittest[i].genes[mutationPoint] == 0)
+            //    {
+            //        fittest[i].genes[mutationPoint] = 1;
+            //    } else
+            //    {
+            //        fittest[i].genes[mutationPoint] = 0;
+            //    }
+            //}
+
+            // Loop through every child in the new population
+            foreach (var child in population.individuals)
             {
-                if(fittest[i].genes[mutationPoint] == 0)
+                // loop through every gene...
+                for(int i = 0; i < child.genes.Count(); i++)
                 {
-                    fittest[i].genes[mutationPoint] = 1;
-                } else
-                {
-                    fittest[i].genes[mutationPoint] = 0;
+                    // Check random probability...
+                    // 1/10 of the time, we mutate.
+                    if(Services.Rand.Next() % 10 <= 1)
+                    {
+                        Console.WriteLine("Mutating, baby!!!!");
+                        //Flip values at the mutation point
+                        if (child.genes[i] == 0)
+                        {
+                            child.genes[i] = 1;
+                        }
+                        else
+                        {
+                            child.genes[i] = 0;
+                        }
+                    }
                 }
             }
-            
+
         }
 
         // Get fittest offspring
