@@ -10,6 +10,7 @@ namespace Genetic_Algorithm
     {
         public Population population = new Population();
         public Individual[] fittest;
+        public Individual[] breedPair;
         public int generationCount = 0;
 
         // Selection
@@ -20,7 +21,7 @@ namespace Genetic_Algorithm
         }
 
         // Crossover
-        public void Crossover()
+        public void Crossover(int fitInd)
         {
             Random rand = new Random();
 
@@ -31,16 +32,48 @@ namespace Genetic_Algorithm
 
             // If even...
             int count = fittest.Count();
-            if(count % 2 == 0)
+
+            for(int i = 0; i < crossOverPoint; i ++)
             {
-                // Grab every two elements, and swap their genes.
-                for(int i = 0; i < count; i += 2)
+                // afterwards, fittest[i] should be the new child.
+                int temp = fittest[i].genes[crossOverPoint];
+                fittest[i].genes[crossOverPoint] = fittest[i + 1].genes[crossOverPoint];
+                fittest[i + 1].genes[crossOverPoint] = temp;
+            }
+        }
+
+        // Mutation
+        public void Mutation()
+        {
+            Random rand = new Random();
+
+            // Select a random mutation point
+            int mutationPoint = rand.Next(Individual.geneLength);
+
+            int count = fittest.Count();
+
+            for (int i = 0; i < count; i++)
+            {
+                if(fittest[i].genes[mutationPoint] == 0)
                 {
-                    int temp = fittest[i].genes[crossOverPoint];
-                    fittest[i].genes[crossOverPoint] = fittest[i + 1].genes[crossOverPoint];
-                    fittest[i + 1].genes[crossOverPoint] = temp;
+                    fittest[i].genes[mutationPoint] = 1;
+                } else
+                {
+                    fittest[i].genes[mutationPoint] = 0;
                 }
             }
+            
+        }
+
+        // Get fittest offspring
+        public Individual GetFittestOffspring()
+        {
+            if (fittest[0].fitness > fittest[1].fitness)
+            {
+                return fittest[0];
+            }
+            return fittest[1];
+
         }
     }
 }

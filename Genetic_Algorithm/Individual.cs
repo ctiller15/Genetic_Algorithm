@@ -29,11 +29,10 @@ namespace Genetic_Algorithm
         // The individual constructor.
         public Individual()
         {
-            var rand = new Random();
             for(int i = 0; i < genes.Length; i++)
             {
                 // Generates a bit that is either 1 or 0.
-                genes[i] = rand.Next() % 2;
+                genes[i] = Program.Rand.Next() % 2;
             }
         }
     }
