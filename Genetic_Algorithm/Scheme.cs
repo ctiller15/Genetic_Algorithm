@@ -10,7 +10,6 @@ namespace Genetic_Algorithm
     {
         public Population population = new Population();
         public Individual[] fittest;
-        public Individual[] breedPair;
         public int generationCount = 0;
 
         // Selection
@@ -18,20 +17,53 @@ namespace Genetic_Algorithm
         {
             // Getting all of the most fit individuals
             fittest = population.GetFittestIndividuals(10)[0];
+
         }
 
         // Crossover
-        public void Crossover(int fitInd)
+        public void Crossover()
         {
-            Random rand = new Random();
+            // Shuffle the array of the fittest first.
+            var randomizedFittest = fittest.OrderBy(x => Services.Rand.Next()).ToArray();
+
+            // Select a random cutoff fitness
+            int cutoff = Services.Rand.Next(population.fittest);
+            Console.WriteLine(cutoff);
+            int count = fittest.Count();
+
+            // Get two members of the current generation that are above or equal to this fitness.
+
+            Individual[] breedPair = new Individual[2];
+
+            for (int i = 0; i < count; i++)
+            {
+                // This is the first to breed.
+                if(fittest[i].fitness >= cutoff)
+                {
+                    if (breedPair[0] != null)
+                    {
+                        breedPair[1] = randomizedFittest[i];
+                    } else
+                    {
+                        breedPair[0] = randomizedFittest[i];
+                    }
+                }
+            }
+
+            Console.WriteLine("The first pair to be bred.");
+            foreach(var individual in breedPair)
+            {
+                Console.WriteLine($"{string.Join(",", individual.genes)} , {individual.fitness}");
+            }
+
+            Console.ReadLine();
 
             // Select a random crossover point
-            int crossOverPoint = rand.Next(Individual.geneLength);
+            int crossOverPoint = Services.Rand.Next(Individual.geneLength);
 
             // Swap values
-
-            // If even...
-            int count = fittest.Count();
+            
+ 
 
             for(int i = 0; i < crossOverPoint; i ++)
             {
