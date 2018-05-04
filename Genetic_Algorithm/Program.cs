@@ -49,10 +49,10 @@ namespace Genetic_Algorithm
                 //demo.Crossover();
 
                 demo.CreateNewPopulation();
-                for(int i = 0; i < 10; i++)
-                {
-                    Console.WriteLine(string.Join(",", demo.population.individuals[i].genes));
-                }
+                //for(int i = 0; i < 10; i++)
+                //{
+                //    Console.WriteLine(string.Join(",", demo.population.individuals[i].genes));
+                //}
 
 
                 //for (int i = 0; i < demo.population.individuals.Count(); i++)
@@ -64,10 +64,13 @@ namespace Genetic_Algorithm
                 //Console.ReadLine();
 
                 demo.Mutation();
-                for (int i = 0; i < 10; i++)
-                {
-                    Console.WriteLine(string.Join(",", demo.population.individuals[i].genes));
-                }
+                //for (int i = 0; i < 10; i++)
+                //{
+                //    Console.WriteLine(string.Join(",", demo.population.individuals[i].genes));
+                //}
+                demo.population.CalculateFitness();
+                Console.WriteLine($"Generation: {demo.generationCount} , Fittest: {string.Join(",",demo.population.individuals.OrderByDescending(x => x.fitness).First().genes)} : {demo.population.fittest}");
+
 
                 Console.ReadLine();
 

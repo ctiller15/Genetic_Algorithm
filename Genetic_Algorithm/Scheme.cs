@@ -130,7 +130,7 @@ namespace Genetic_Algorithm
                     // 1/10 of the time, we mutate.
                     if(Services.Rand.Next() % 10 <= 1)
                     {
-                        Console.WriteLine("Mutating, baby!!!!");
+                        //Console.WriteLine("Mutating, baby!!!!");
                         //Flip values at the mutation point
                         if (child.genes[i] == 0)
                         {
@@ -164,8 +164,8 @@ namespace Genetic_Algorithm
             for(int i = 0; i < Population.PopSize; i++)
             {
                 Crossover();
-                Console.WriteLine("Child:");
-                Console.WriteLine(string.Join(",",childGene));
+                //Console.WriteLine("Child:");
+                //Console.WriteLine(string.Join(",",childGene));
                 var newIndividual = new Individual(childGene);
                 newPop.individuals[i] = newIndividual;
             }
