@@ -24,18 +24,19 @@ namespace Genetic_Algorithm
         }
 
         // Get the fittest individual(s)
-        public IEnumerable<Individual>[] GetFittestIndividuals(int percentage)
+        public Individual[][] GetFittestIndividuals(int percentage)
         {
             // Sort the individuals:
-            var fitIndividuals = new IEnumerable<Individual>[2];
+            var fitIndividuals = new Individual[2][];
 
             var individualCount = percentage * individuals.Count() / 100;
+            fitIndividuals[0] = individuals.OrderByDescending(o => o.fitness).Take(individualCount).ToArray();
             // The fittest individuals
-            fitIndividuals[0] = individuals.OrderByDescending(o => o.fitness).Take(individualCount);
+            //fitIndividuals[0] = individuals.OrderByDescending(o => o.fitness).Take(individualCount).ToList();
             fittest = fitIndividuals[0].First().fitness;
             fittestStr = fitIndividuals[0].First().genes.ToString();
             // The least fit individuals
-            fitIndividuals[1] = individuals.OrderBy(o => o.fitness).Take(individualCount);
+            fitIndividuals[1] = individuals.OrderBy(o => o.fitness).Take(individualCount).ToArray();
 
             return fitIndividuals;
         }
