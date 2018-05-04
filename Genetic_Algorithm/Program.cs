@@ -25,11 +25,11 @@ namespace Genetic_Algorithm
 
             demo.population.CalculateFitness();
 
-            //for (int i = 0; i < demo.population.individuals.Count(); i++)
-            //{
+            for (int i = 0; i < demo.population.individuals.Count(); i++)
+            {
 
-            //    Console.WriteLine($"{string.Join(",", demo.population.individuals[i].genes)} , {demo.population.individuals[i].fitness}");
-            //}
+                Console.WriteLine($"{string.Join(",", demo.population.individuals[i].genes)} , {demo.population.individuals[i].fitness}");
+            }
 
             Console.WriteLine($"Generation {demo.generationCount} Fittest: {demo.population.fittest}");
 
@@ -46,7 +46,15 @@ namespace Genetic_Algorithm
                 //    Console.WriteLine($"{string.Join(",", demo.fittest[i].genes)} , {demo.fittest[i].fitness}");
                 //}
 
-                demo.Crossover();
+                //demo.Crossover();
+
+                demo.CreateNewPopulation();
+
+                for (int i = 0; i < demo.population.individuals.Count(); i++)
+                {
+
+                    Console.WriteLine(string.Join(",", demo.population.individuals[i].genes));
+                }
 
                 Console.ReadLine();
 

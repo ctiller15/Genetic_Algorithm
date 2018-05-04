@@ -11,6 +11,7 @@ namespace Genetic_Algorithm
         //
         static public int PopSize = 100;
         public int fittest = 0;
+        public int secondFittest = 0;
         public string fittestStr = "";
         public Individual[] individuals = new Individual[PopSize];
 
@@ -35,6 +36,7 @@ namespace Genetic_Algorithm
             // The fittest individuals
             //fitIndividuals[0] = individuals.OrderByDescending(o => o.fitness).Take(individualCount).ToList();
             fittest = fitIndividuals[0].First().fitness;
+            secondFittest = fitIndividuals[0].Distinct().Skip(1).First().fitness;
             fittestStr = fitIndividuals[0].First().genes.ToString();
             // The least fit individuals
             fitIndividuals[1] = individuals.OrderBy(o => o.fitness).Take(individualCount).ToArray();

@@ -35,5 +35,11 @@ namespace Genetic_Algorithm
                 genes[i] = Services.Rand.Next() % 2;
             }
         }
+
+        //individual overload, takes an array.
+        public Individual(int[] genecombination)
+        {
+            genes = genecombination;
+        }
     }
 }

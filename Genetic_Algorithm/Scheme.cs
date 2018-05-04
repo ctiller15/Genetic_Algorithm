@@ -10,6 +10,7 @@ namespace Genetic_Algorithm
     {
         public Population population = new Population();
         public Individual[] fittest;
+        int[] childGene = new int[Individual.geneLength];
         public int generationCount = 0;
 
         // Selection
@@ -21,13 +22,13 @@ namespace Genetic_Algorithm
         }
 
         // Crossover
-        public void Crossover()
+        public int[] Crossover()
         {
             // Shuffle the array of the fittest first.
             var randomizedFittest = fittest.OrderBy(x => Services.Rand.Next()).ToArray();
 
             // Select a random cutoff fitness
-            int cutoff = Services.Rand.Next(population.fittest);
+            int cutoff = Services.Rand.Next(population.secondFittest);
             Console.WriteLine(cutoff);
             int count = fittest.Count();
 
@@ -50,28 +51,52 @@ namespace Genetic_Algorithm
                 }
             }
 
+            // Quick error checking...
+
+            // logging the pair to breed.
             Console.WriteLine("The first pair to be bred.");
-            foreach(var individual in breedPair)
+            foreach (var individual in breedPair)
             {
                 Console.WriteLine($"{string.Join(",", individual.genes)} , {individual.fitness}");
             }
 
-            Console.ReadLine();
+            //Console.ReadLine();
 
             // Select a random crossover point
             int crossOverPoint = Services.Rand.Next(Individual.geneLength);
+
+            // Do the crossover.
+            for(int i = 0; i < Individual.geneLength; i++)
+            {
+
+                //Console.WriteLine(i);
+                if(i < crossOverPoint)
+                {
+                    childGene[i] = breedPair[0].genes[i];
+                } else
+                {
+                    childGene[i] = breedPair[1].genes[i];
+                }
+
+            }
+
+            Console.WriteLine($"{string.Join(",", childGene)} swapped on index {crossOverPoint}");
+
+            //Console.ReadLine();
+
+            return childGene;
 
             // Swap values
             
  
 
-            for(int i = 0; i < crossOverPoint; i ++)
-            {
-                // afterwards, fittest[i] should be the new child.
-                int temp = fittest[i].genes[crossOverPoint];
-                fittest[i].genes[crossOverPoint] = fittest[i + 1].genes[crossOverPoint];
-                fittest[i + 1].genes[crossOverPoint] = temp;
-            }
+            //for(int i = 0; i < crossOverPoint; i ++)
+            //{
+            //    // afterwards, fittest[i] should be the new child.
+            //    int temp = fittest[i].genes[crossOverPoint];
+            //    fittest[i].genes[crossOverPoint] = fittest[i + 1].genes[crossOverPoint];
+            //    fittest[i + 1].genes[crossOverPoint] = temp;
+            //}
         }
 
         // Mutation
@@ -105,6 +130,22 @@ namespace Genetic_Algorithm
                 return fittest[0];
             }
             return fittest[1];
+
+        }
+
+        // Create new population
+        public void CreateNewPopulation()
+        {
+            var newPop = new Population();
+            for(int i = 0; i < Population.PopSize; i++)
+            {
+                Crossover();
+                Console.WriteLine(childGene);
+                newPop.individuals[i] = new Individual(childGene);
+            }
+
+            // Replace the old population with a new population.
+            population = newPop;
 
         }
     }
