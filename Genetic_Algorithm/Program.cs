@@ -8,75 +8,37 @@ namespace Genetic_Algorithm
 {
     class Program
     {
-
         static void Main(string[] args)
         {
-
             Scheme demo = new Scheme();
 
-            // Init population
-            demo.population.InitializePopulation(100);
-
-            //for (int i = 0; i < demo.population.individuals.Count(); i++)
-            //{
-
-            //    Console.WriteLine(string.Join(",", demo.population.individuals[i].genes));
-            //}
+            // Initialize population
+            demo.population.InitializePopulation(Population.PopSize);
 
             demo.population.CalculateFitness();
 
-            for (int i = 0; i < demo.population.individuals.Count(); i++)
-            {
-
-                Console.WriteLine($"{string.Join(",", demo.population.individuals[i].genes)} , {demo.population.individuals[i].fitness}");
-            }
-
             Console.WriteLine($"Generation {demo.generationCount} Fittest: {demo.population.fittest}");
 
-            while(demo.population.fittest < Individual.geneLength)
+            while(demo.population.fittest < Individual.geneLength && demo.generationCount < 100)
             {
                 demo.generationCount++;
 
                 // Do selection.
                 demo.Selection();
 
-                // Selection check.
-                //for(int i = 0; i < demo.fittest.Count(); i++)
-                //{
-                //    Console.WriteLine($"{string.Join(",", demo.fittest[i].genes)} , {demo.fittest[i].fitness}");
-                //}
-
-                //demo.Crossover();
-
+                // Breed and create a new population.
                 demo.CreateNewPopulation();
-                //for(int i = 0; i < 10; i++)
-                //{
-                //    Console.WriteLine(string.Join(",", demo.population.individuals[i].genes));
-                //}
 
-
-                //for (int i = 0; i < demo.population.individuals.Count(); i++)
-                //{
-
-                //    Console.WriteLine(string.Join(",", demo.population.individuals[i].genes));
-                //}
-
-                //Console.ReadLine();
-
+                // Mutate new population.
                 demo.Mutation();
-                //for (int i = 0; i < 10; i++)
-                //{
-                //    Console.WriteLine(string.Join(",", demo.population.individuals[i].genes));
-                //}
+
+                // Calculate fitness and log to console.
                 demo.population.CalculateFitness();
                 Console.WriteLine($"Generation: {demo.generationCount} , Fittest: {string.Join(",",demo.population.individuals.OrderByDescending(x => x.fitness).First().genes)} : {demo.population.fittest}");
 
-
-                Console.ReadLine();
+                //Console.ReadLine();
 
             }
-
-
             Console.ReadLine();
         }
     }

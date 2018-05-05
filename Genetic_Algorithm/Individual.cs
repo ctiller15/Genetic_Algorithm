@@ -25,7 +25,6 @@ namespace Genetic_Algorithm
             }
         }
 
-
         // The individual constructor.
         public Individual()
         {
@@ -43,11 +42,9 @@ namespace Genetic_Algorithm
             {
                 //genes = genecombination
                 //genes[i] = genecombination[i];
-                // Clone to avoid reference issues.
-                genes = (int[])genecombination.Clone();
-            
+                // Clone to avoid pass by reference issues.
+                genes = (int[])genecombination.Clone();           
             }
-
         }
     }
 }

@@ -21,7 +21,6 @@ namespace Genetic_Algorithm
             for (int i = 0; i < individuals.Count(); i++)
             {
                 individuals[i] = new Individual();
-                //Console.WriteLine(string.Join(",", individuals[i].genes));
             }
         }
 
@@ -33,11 +32,12 @@ namespace Genetic_Algorithm
 
             var individualCount = percentage * individuals.Count() / 100;
             fitIndividuals[0] = individuals.OrderByDescending(o => o.fitness).Take(individualCount).ToArray();
-            // The fittest individuals
-            //fitIndividuals[0] = individuals.OrderByDescending(o => o.fitness).Take(individualCount).ToList();
+
             fittest = fitIndividuals[0].First().fitness;
             secondFittest = fitIndividuals[0].Distinct().Skip(1).First().fitness;
+
             fittestStr = fitIndividuals[0].First().genes.ToString();
+
             // The least fit individuals
             fitIndividuals[1] = individuals.OrderBy(o => o.fitness).Take(individualCount).ToArray();
 
@@ -51,10 +51,8 @@ namespace Genetic_Algorithm
             {
                 individuals[i].FitnessCalc();
             }
-
             // After calculating the fitness, we find the fittest individuals.
             GetFittestIndividuals(10);
         }
-
     }
 }

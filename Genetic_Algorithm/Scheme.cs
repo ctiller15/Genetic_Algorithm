@@ -18,7 +18,6 @@ namespace Genetic_Algorithm
         {
             // Getting all of the most fit individuals
             fittest = population.GetFittestIndividuals(10)[0];
-
         }
 
         // Crossover
@@ -29,7 +28,6 @@ namespace Genetic_Algorithm
 
             // Select a random cutoff fitness
             int cutoff = Services.Rand.Next(population.secondFittest);
-            Console.WriteLine(cutoff);
             int count = fittest.Count();
 
             // Get two members of the current generation that are above or equal to this fitness.
@@ -51,20 +49,8 @@ namespace Genetic_Algorithm
                 }
             }
 
-            // Quick error checking...
-
-            // logging the pair to breed.
-            Console.WriteLine("The first pair to be bred.");
-            foreach (var individual in breedPair)
-            {
-                Console.WriteLine($"{string.Join(",", individual.genes)} , {individual.fitness}");
-            }
-
-            //Console.ReadLine();
-
             // Select a random crossover point
             int crossOverPoint = Services.Rand.Next(Individual.geneLength);
-            Console.WriteLine(crossOverPoint);
 
             // Do the crossover.
             for(int i = 0; i < Individual.geneLength; i++)
@@ -81,44 +67,13 @@ namespace Genetic_Algorithm
 
             }
 
-            Console.WriteLine($"{string.Join(",", childGene)} swapped on index {crossOverPoint}");
-
-            //Console.ReadLine();
-
             return childGene;
-
-            // Swap values
-            
-
-            //for(int i = 0; i < crossOverPoint; i ++)
-            //{
-            //    // afterwards, fittest[i] should be the new child.
-            //    int temp = fittest[i].genes[crossOverPoint];
-            //    fittest[i].genes[crossOverPoint] = fittest[i + 1].genes[crossOverPoint];
-            //    fittest[i + 1].genes[crossOverPoint] = temp;
-            //}
         }
 
         // Mutation
         public void Mutation()
         {
-            //Random rand = new Random();
-
-            // Select a random mutation point
-            //int mutationPoint = Services.Rand.Next(Individual.geneLength);
-
             int count = fittest.Count();
-
-            //for (int i = 0; i < count; i++)
-            //{
-            //    if(fittest[i].genes[mutationPoint] == 0)
-            //    {
-            //        fittest[i].genes[mutationPoint] = 1;
-            //    } else
-            //    {
-            //        fittest[i].genes[mutationPoint] = 0;
-            //    }
-            //}
 
             // Loop through every child in the new population
             foreach (var child in population.individuals)
@@ -130,7 +85,6 @@ namespace Genetic_Algorithm
                     // 1/10 of the time, we mutate.
                     if(Services.Rand.Next() % 10 <= 1)
                     {
-                        //Console.WriteLine("Mutating, baby!!!!");
                         //Flip values at the mutation point
                         if (child.genes[i] == 0)
                         {
@@ -164,8 +118,6 @@ namespace Genetic_Algorithm
             for(int i = 0; i < Population.PopSize; i++)
             {
                 Crossover();
-                //Console.WriteLine("Child:");
-                //Console.WriteLine(string.Join(",",childGene));
                 var newIndividual = new Individual(childGene);
                 newPop.individuals[i] = newIndividual;
             }
