@@ -1,0 +1,40 @@
+﻿-What is ML?
+
+	- Give machines the ability to "learn" (progressively improve at a given task)
+	- Not explicitly programmed to do a task.
+
+- Why use ML?
+	
+	- The real world is complex.
+	- Best solution may not be obvious.
+
+- What makes it Unique?
+
+	- Completely different mode of thinking.
+	- Mimics "real life".
+
+- What is a GA?
+
+	- Algorithm based on "survival of the fittest"
+	- Create a set of solutions, and collectively "breed" towards the solution you want.
+
+	- Steps:
+
+	- Initialization
+
+	- Selection
+	- Crossing (breeding)
+	- Mutation
+
+- Extra tidbits
+
+	- Example is very simple. Real world not that nice.
+	- Avoid Local Maximums
+	- Look for "good enough", not "perfect"
+	
+- Examples
+
+	https://www.youtube.com/watch?v=3bhP7zulFfY - Learning to play snake
+	https://www.youtube.com/watch?v=qv6UVOQ0F44 - MarI/O
+	https://www.youtube.com/watch?v=u2t77mQmJiY - Two AI competing
+	https://www.youtube.com/watch?v=Gl3EjiVlz_4 - AI Learning to jump over a ball
