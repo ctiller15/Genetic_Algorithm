@@ -97,7 +97,6 @@ namespace Genetic_Algorithm
                     }
                 }
             }
-
         }
 
         // Get fittest offspring
