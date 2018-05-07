@@ -8,8 +8,8 @@ namespace Genetic_Algorithm
 {
     class Population
     {
-        //
-        static public int PopSize = 100;
+        // Free to modify popsize.
+        static public int PopSize = 30;
         public int fittest = 0;
         public int secondFittest = 0;
         public string fittestStr = "";
@@ -24,7 +24,7 @@ namespace Genetic_Algorithm
             }
         }
 
-        // Get the fittest individual(s)
+        // Get the fittest individual(s) Free to modify percentage.
         public Individual[][] GetFittestIndividuals(int percentage)
         {
             // Sort the individuals:

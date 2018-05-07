@@ -83,6 +83,7 @@ namespace Genetic_Algorithm
                 {
                     // Check random probability...
                     // 1/10 of the time, we mutate.
+                    // Free to modify % 10 <= 1 to change mutation.
                     if(Services.Rand.Next() % 10 <= 1)
                     {
                         //Flip values at the mutation point
@@ -106,6 +107,7 @@ namespace Genetic_Algorithm
             {
                 return fittest[0];
             }
+
             return fittest[1];
 
         }

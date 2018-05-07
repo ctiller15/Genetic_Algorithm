@@ -17,7 +17,7 @@ namespace Genetic_Algorithm
 
             demo.population.CalculateFitness();
 
-            Console.WriteLine($"Generation {demo.generationCount} Fittest: {demo.population.fittest}");
+            Console.WriteLine($"Generation: {demo.generationCount} , Fittest: {string.Join(",", demo.population.individuals.OrderByDescending(x => x.fitness).First().genes)} : {demo.population.fittest}");
 
             while(demo.population.fittest < Individual.geneLength && demo.generationCount < 100)
             {

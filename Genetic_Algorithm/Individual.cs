@@ -9,6 +9,7 @@ namespace Genetic_Algorithm
     class Individual
     {
         public int fitness = 0;
+        // Free to modify geneLength
         static public int geneLength = 20;
         public int[] genes = new int[geneLength];
 

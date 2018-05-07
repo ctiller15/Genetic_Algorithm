@@ -1,4 +1,4 @@
-﻿-What is ML?
+﻿- What is ML?
 
 	- Give machines the ability to "learn" (progressively improve at a given task)
 	- Not explicitly programmed to do a task.
@@ -38,3 +38,4 @@
 	https://www.youtube.com/watch?v=qv6UVOQ0F44 - MarI/O
 	https://www.youtube.com/watch?v=u2t77mQmJiY - Two AI competing
 	https://www.youtube.com/watch?v=Gl3EjiVlz_4 - AI Learning to jump over a ball
+	https://www.youtube.com/watch?v=GOFws_hhZs8 - Evolution Simulator, learning to run
